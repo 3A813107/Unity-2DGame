@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
-//code
+
     void Jump()
     {
         if(isGround)
