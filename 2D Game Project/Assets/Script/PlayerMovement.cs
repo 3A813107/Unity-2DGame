@@ -6,7 +6,6 @@ public class PlayerMovement : MonoBehaviour
 {
 
     private Rigidbody2D rb;
-    private Collider2D coll;
     private Animator anim;
     public float MoveSpeed,JumpForce;
     public Transform GroundCheck;
@@ -24,26 +23,33 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb=GetComponent<Rigidbody2D>();
-        coll = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
     }
 
 
     void Update()
     {
-        Jump();        
+        Jump();      
     }
 
     private void FixedUpdate()
     {
         isGround = Physics2D.OverlapCircle(GroundCheck.position,0.1f,Ground);
         GroundMovement();
-
+        SwitchAnimation(); 
     }
 
     void GroundMovement()
     {
         float MoveInput = Input.GetAxisRaw("Horizontal");
+        if(MoveInput > 0 || MoveInput < 0)
+        {
+            anim.SetBool("run",true);
+        }
+        else if(MoveInput==0)
+        {
+            anim.SetBool("run",false);
+        }
         rb.velocity=new Vector2(MoveInput * MoveSpeed,rb.velocity.y);
         if(FacingRight == false && MoveInput > 0)
         {
@@ -67,6 +73,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 isJumping=true;
                 JumpTimeCounter=JumpTime;
+                anim.SetBool("jump",true);
                 rb.velocity = Vector2.up * JumpForce;           
             }
             else
@@ -75,6 +82,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     isJumping=true;
                     JumpTimeCounter=JumpTime;
+                    anim.SetBool("doublejump",true);
                     rb.velocity = Vector2.up * JumpForce;
                     canDoubleJump=false;
                 }
@@ -105,4 +113,66 @@ public class PlayerMovement : MonoBehaviour
         Scaler.x*=-1;
         transform.localScale=Scaler;
     }
+    void SwitchAnimation()
+    {
+        anim.SetBool("idle",false);
+        if(anim.GetBool("jump"))
+        {
+            if(rb.velocity.y < 0.0f)
+            {
+                anim.SetBool("jump",false);
+                anim.SetBool("fall",true);
+            }
+        }
+        else if(isGround)
+        {
+            anim.SetBool("fall",false);
+            anim.SetBool("idle",true);
+        }
+
+        if(anim.GetBool("run"))
+        {
+            if(rb.velocity.y < -1.0f)
+            {
+                anim.SetBool("run",false);
+                anim.SetBool("fall",true);
+            }
+        }
+        else if(isGround)
+        {
+            anim.SetBool("fall",false);
+            anim.SetBool("idle",true);
+        }
+
+        if(anim.GetBool("idle"))
+        {
+            if(rb.velocity.y < -1.0f)
+            {
+                anim.SetBool("idle",false);
+                anim.SetBool("fall",true);
+            }
+        }
+        else if(isGround)
+        {
+            anim.SetBool("fall",false);
+            anim.SetBool("idle",true);
+        }
+
+        if(anim.GetBool("doublejump"))
+        {
+            if(rb.velocity.y < 0.0f)
+            {
+                anim.SetBool("doublejump",false);
+                anim.SetBool("doublefall",true);
+            }
+        }
+        else if(isGround)
+        {
+            anim.SetBool("doublefall",false);
+            anim.SetBool("idle",true);
+        }
+     
+    }
+
 }
+
