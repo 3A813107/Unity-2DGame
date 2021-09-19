@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 110627022}
   - component: {fileID: 110627018}
   - component: {fileID: 110627023}
+  - component: {fileID: 110627024}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -157,9 +158,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.021883687, y: -0.08753531}
+  m_Offset: {x: 0.021883687, y: -0.08198488}
   serializedVersion: 2
-  m_Radius: 0.16736646
+  m_Radius: 0.16181605
 --- !u!50 &110627019
 Rigidbody2D:
   serializedVersion: 4
@@ -244,8 +245,9 @@ Transform:
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 360494506}
+  - {fileID: 519420032}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &110627022
 BoxCollider2D:
@@ -260,7 +262,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.022652358, y: 0.11598407}
+  m_Offset: {x: 0.02265235, y: 0.11598407}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -271,7 +273,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.3362701, y: 0.39163092}
+  m_Size: {x: 0.32184315, y: 0.39163092}
   m_EdgeRadius: 0
 --- !u!114 &110627023
 MonoBehaviour:
@@ -292,7 +294,26 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   isGround: 0
-  JumpTime: 0.13
+  JumpTime: 0.2
+--- !u!95 &110627024
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110627017}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0e621b6006506564ca502645351dd6d6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &360494505
 GameObject:
   m_ObjectHideFlags: 0
@@ -376,7 +397,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 10.22
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -399,12 +420,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.49, y: 2.6, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.060000025, y: 0.23666665, z: -10}
+  m_LocalScale: {x: 0.33333334, y: 0.33333334, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Father: {fileID: 110627021}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &958418159
 GameObject:
@@ -448,7 +469,7 @@ Transform:
   m_Children:
   - {fileID: 1811886765}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1811886764
 GameObject:
