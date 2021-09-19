@@ -34,8 +34,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        isGround = Physics2D.OverlapCircle(GroundCheck.position,0.1f,Ground);
         GroundMovement();
+        isGround = Physics2D.OverlapCircle(GroundCheck.position,0.1f,Ground);
         SwitchAnimation(); 
     }
 
@@ -132,7 +132,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(anim.GetBool("run"))
         {
-            if(rb.velocity.y < -1.0f)
+            if(rb.velocity.y < -5.0f)
             {
                 anim.SetBool("run",false);
                 anim.SetBool("fall",true);
@@ -146,7 +146,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(anim.GetBool("idle"))
         {
-            if(rb.velocity.y < -1.0f)
+            if(rb.velocity.y < -5.0f)
             {
                 anim.SetBool("idle",false);
                 anim.SetBool("fall",true);

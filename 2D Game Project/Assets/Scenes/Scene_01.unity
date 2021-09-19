@@ -288,13 +288,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MoveSpeed: 8
-  JumpForce: 10
+  JumpForce: 8
   GroundCheck: {fileID: 360494506}
   Ground:
     serializedVersion: 2
     m_Bits: 8
   isGround: 0
-  JumpTime: 0.2
+  JumpTime: 0.25
 --- !u!95 &110627024
 Animator:
   serializedVersion: 3
