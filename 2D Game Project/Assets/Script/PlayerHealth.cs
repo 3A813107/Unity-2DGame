@@ -6,9 +6,11 @@ public class PlayerHealth : MonoBehaviour
 {
     public int health;
     public int Maxhealth;
+    private ScreenFlash sf;
     void Start()
     {
         health=Maxhealth;
+        sf=GetComponent<ScreenFlash>();
     }
 
     // Update is called once per frame
@@ -23,6 +25,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void DamagePlayer(int damage)
     {
+        CM_Shake.Instance.ShakeCamera(3f,0.2f);
+        sf.FlashScreen();
         health -= damage;
         if(health<=0)
         {
