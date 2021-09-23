@@ -150,12 +150,13 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("idle",true);
         }
 
-        if(anim.GetBool("idle") && !isGround)
+        if(!anim.GetBool("idle"))
         {
             if(rb.velocity.y < -5.0f)
             {
-                anim.SetBool("idle",false);
                 anim.SetBool("fall",true);
+                anim.SetBool("idle",false);
+
             }
         }
         else if(isGround)
