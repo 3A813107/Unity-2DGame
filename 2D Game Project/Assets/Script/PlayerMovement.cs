@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("idle",true);
         }
 
-        if(anim.GetBool("run"))
+        if(anim.GetBool("run") && !isGround)
         {
             if(rb.velocity.y < -5.0f)
             {
@@ -144,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("idle",true);
         }
 
-        if(anim.GetBool("idle"))
+        if(anim.GetBool("idle") && !isGround)
         {
             if(rb.velocity.y < -5.0f)
             {
