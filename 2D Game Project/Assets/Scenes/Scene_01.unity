@@ -209,12 +209,12 @@ GameObject:
   - component: {fileID: 110627021}
   - component: {fileID: 110627020}
   - component: {fileID: 110627019}
-  - component: {fileID: 110627018}
   - component: {fileID: 110627024}
   - component: {fileID: 110627023}
   - component: {fileID: 110627022}
   - component: {fileID: 110627025}
   - component: {fileID: 110627026}
+  - component: {fileID: 110627018}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -222,8 +222,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!70 &110627018
-CapsuleCollider2D:
+--- !u!61 &110627018
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -235,9 +235,19 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0018309753, y: 0.05015151}
-  m_Size: {x: 0.28747004, y: 0.61036265}
-  m_Direction: 0
+  m_Offset: {x: 0.0000024996698, y: 0.038983136}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.2343758, y: 0.5776446}
+  m_EdgeRadius: 0
 --- !u!50 &110627019
 Rigidbody2D:
   serializedVersion: 4
@@ -942,7 +952,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.6700003, y: 4.675, z: -10}
+  m_LocalPosition: {x: 3.6700003, y: 1.8899999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1420,11 +1430,11 @@ MonoBehaviour:
   m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
-  m_ScreenY: 0.75
+  m_ScreenY: 0.5
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.06
-  m_DeadZoneHeight: 0
-  m_DeadZoneDepth: 0
+  m_DeadZoneHeight: 0.06
+  m_DeadZoneDepth: 2
   m_UnlimitedSoftZone: 0
   m_SoftZoneWidth: 0.8
   m_SoftZoneHeight: 0.8
@@ -1532,7 +1542,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1131024600}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.6700003, y: 4.675, z: -10}
+  m_LocalPosition: {x: 3.6700003, y: 1.8899999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1119577929}
@@ -2480,6 +2490,18 @@ CompositeCollider2D:
       - X: 90000000
         Y: 30000000
     - - X: 220000000
+        Y: 0
+      - X: 160000100
+        Y: 0
+      - X: 160000100
+        Y: 41
+      - X: 160000041
+        Y: 100
+      - X: 149999959
+        Y: 100
+      - X: 149999900
+        Y: 41
+      - X: 149999900
         Y: 0
       - X: -50000000
         Y: 0
@@ -4321,8 +4343,8 @@ Tilemap:
   - first: {x: 15, y: -1, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 2
-      m_TileSpriteIndex: 3
+      m_TileIndex: 0
+      m_TileSpriteIndex: 0
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -4590,11 +4612,11 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 35
+  - m_RefCount: 36
     m_Data: {fileID: 11400000, guid: 9fd415b8e1c53fd40b45d51353c663c4, type: 2}
   - m_RefCount: 99
     m_Data: {fileID: 11400000, guid: 2ecd746395fdd884daa289a674425288, type: 2}
-  - m_RefCount: 4
+  - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: efe2e8a4b8cfceb418c35e816a92875a, type: 2}
   - m_RefCount: 4
     m_Data: {fileID: 11400000, guid: ea77f277053ee55489975ac4631bfc51, type: 2}
@@ -4617,13 +4639,13 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: fd7d4dae3eda2e445a2e124e96f245b1, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 35
+  - m_RefCount: 36
     m_Data: {fileID: 3776400002857069758, guid: 184c21d83d7f58f4699ff50f62049199, type: 3}
   - m_RefCount: 99
     m_Data: {fileID: 7393645236044506413, guid: 184c21d83d7f58f4699ff50f62049199, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 616104920212612596, guid: 184c21d83d7f58f4699ff50f62049199, type: 3}
-  - m_RefCount: 4
+  - m_RefCount: 3
     m_Data: {fileID: 1832926404367280642, guid: 184c21d83d7f58f4699ff50f62049199, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 4639782543419762215, guid: 184c21d83d7f58f4699ff50f62049199, type: 3}
