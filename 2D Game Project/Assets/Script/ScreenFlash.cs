@@ -14,12 +14,6 @@ public class ScreenFlash : MonoBehaviour
         defaultColor = img.color;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void FlashScreen()
     {
         StartCoroutine(Flash());
