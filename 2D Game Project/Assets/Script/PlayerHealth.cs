@@ -6,11 +6,16 @@ public class PlayerHealth : MonoBehaviour
 {
     public int health;
     public int Maxhealth;
+
+    private Animator anim;
     private ScreenFlash sf;
+    private Rigidbody2D rb;
     void Start()
     {
         health=Maxhealth;
         sf=GetComponent<ScreenFlash>();
+        anim=GetComponent<Animator>();
+        rb=GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -30,8 +35,20 @@ public class PlayerHealth : MonoBehaviour
         health -= damage;
         if(health<=0)
         {
-            //Destroy(gameObject);
-            Debug.Log("die");
+            Die();
+            Invoke("KillPlayer",0.4f);
         }
+    }
+
+    public void Die()
+    {
+        rb.velocity=new Vector2(0,0);
+        GameManager.isPlayerAlive = false;
+        anim.SetTrigger("death");
+    }
+
+    void KillPlayer()
+    {
+        Destroy(gameObject);
     }
 }

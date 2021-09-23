@@ -29,14 +29,20 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        Jump();      
+        if(GameManager.isPlayerAlive)
+        {
+            Jump();
+        }      
     }
 
     private void FixedUpdate()
     {
-        GroundMovement();
-        isGround = Physics2D.OverlapCircle(GroundCheck.position,0.1f,Ground);
-        SwitchAnimation(); 
+        if(GameManager.isPlayerAlive)
+        {
+            GroundMovement();
+            isGround = Physics2D.OverlapCircle(GroundCheck.position,0.1f,Ground);
+            SwitchAnimation();
+        } 
     }
 
     void GroundMovement()
