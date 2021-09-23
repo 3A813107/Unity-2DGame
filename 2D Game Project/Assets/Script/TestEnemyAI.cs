@@ -75,11 +75,21 @@ public class TestEnemyAI : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.CompareTag("Player") && other.GetType().ToString() == "UnityEngine.BoxCollider2D")
+        if(other.gameObject.CompareTag("Player"))
         {
             if(playerHealth != null)
             {
                 playerHealth.DamagePlayer(damage);
+            }
+            if(other.gameObject.transform.position.x > transform.position.x)
+            {
+                Rigidbody2D Player_rb=other.gameObject.GetComponent<Rigidbody2D>();
+                Player_rb.velocity=new Vector2(6,6);
+            }
+            else if(other.gameObject.transform.position.x < transform.position.x)
+            {
+                Rigidbody2D Player_rb=other.gameObject.GetComponent<Rigidbody2D>();
+                Player_rb.velocity=new Vector2(-6,6);
             }
         }
     }

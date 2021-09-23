@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if(GameManager.isPlayerAlive)
+        if(GameManager.isPlayerAlive && GameManager.canInpute)
         {
             Jump();
         }      
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(GameManager.isPlayerAlive)
+        if(GameManager.isPlayerAlive && GameManager.canInpute)
         {
             GroundMovement();
             isGround = Physics2D.OverlapCircle(GroundCheck.position,0.1f,Ground);

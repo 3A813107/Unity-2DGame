@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public static bool isPlayerAlive = true;
+    public static bool canInpute = true;
+
+    public static int Playerfacing;
     void Awake()
     {
         MakeSingleton();
