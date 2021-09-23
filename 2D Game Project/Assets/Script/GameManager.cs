@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public static bool isPlayerAlive = true;
     void Awake()
     {
-        
+        MakeSingleton();
     }
 
     private void MakeSingleton()
