@@ -7,6 +7,9 @@ public class TestEnemyAI : MonoBehaviour
 {
 
     public float Speed;
+
+
+    private float defaultSpeed;
     public List<Transform> points;
     public int nextID=0;
 
@@ -15,6 +18,10 @@ public class TestEnemyAI : MonoBehaviour
 
     public int health;
     public int damage;
+
+    private float dazedTime;
+    public float startDazedTime;
+
 
     private void Reset()
     {
@@ -38,12 +45,26 @@ public class TestEnemyAI : MonoBehaviour
     }
     void Start()
     {
+        defaultSpeed=Speed;
         playerHealth=GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if(dazedTime <= 0)
+        {
+            Speed=defaultSpeed;
+        }
+        else
+        {
+            Speed=0;
+            dazedTime-=Time.deltaTime;
+        }
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
         Movement();
     }
 
@@ -92,6 +113,12 @@ public class TestEnemyAI : MonoBehaviour
                 Player_rb.velocity=new Vector2(-6,6);
             }
         }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        dazedTime=startDazedTime;
+        health-=damage;
     }
     
 }
