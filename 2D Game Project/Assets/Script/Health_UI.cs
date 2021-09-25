@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Health : MonoBehaviour
+public class Health_UI : MonoBehaviour
 {
     private PlayerHealth playerhealth;
 
-    [SerializeReference]private int maxhealth;
-    [SerializeReference]private int currenthealth;
+    private int maxhealth;
+    private int currenthealth;
 
     public Image[] hearts;
     public Sprite fullHeart;
