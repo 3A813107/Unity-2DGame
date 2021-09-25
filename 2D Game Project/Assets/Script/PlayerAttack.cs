@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private float Attacktime;
-    public float startAttackTime;
+    public float AttackRate;
+    private float nextAttackTime;
     public LayerMask whatIsEnemies;
     public int damage;
     public Transform attackPos;
@@ -13,28 +13,32 @@ public class PlayerAttack : MonoBehaviour
     public float attackRangeY;
     void Update()
     {
-        if(Attacktime <=0)
+        if(Time.time >= nextAttackTime)
         {
-            if(Input.GetKey(KeyCode.Z))
+            if(Input.GetKeyDown(KeyCode.Z))
             {
-                Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackPos.position, new Vector2(attackRangeX,attackRangeY),0,whatIsEnemies);
-                for(int i = 0;i < enemiesToDamage.Length;i++)
-                {
-                    enemiesToDamage[i].GetComponent<TestEnemyAI>().TakeDamage(damage);
-                }
+                Attack();
+                nextAttackTime = Time.time+1f/AttackRate;
             }
-            Attacktime = startAttackTime;
-        }
-        else
-        {
-            Attacktime -= Time.deltaTime;
-        }
 
+        }
+        
     }
     
+    void Attack()
+    {
+        Debug.Log("attack!");
+        Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(attackPos.position, new Vector2(attackRangeX,attackRangeY),0,whatIsEnemies);
+        for(int i = 0;i < enemiesToDamage.Length;i++)
+        {
+            enemiesToDamage[i].GetComponent<TestEnemyAI>().TakeDamage(damage);
+        }
+    }
     void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(attackPos.position, new Vector3(attackRangeX,attackRangeY,1));
     }
+    
+    
 }
