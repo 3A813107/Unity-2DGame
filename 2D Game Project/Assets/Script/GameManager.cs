@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public static bool isPlayerAlive = true;
     public static bool canInpute = true;
+    public static bool GetDoubleJumpAbility=false;
 
     void Awake()
     {
