@@ -13,7 +13,9 @@ public class PlayerHealth : MonoBehaviour
     private ScreenFlash sf;
     private Rigidbody2D rb;
 
-    public int det;
+    public Animator Hp_anim;
+
+
     void Start()
     {
         health=Maxhealth;
@@ -35,6 +37,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if(canHurt)
         {
+            Hp_anim.SetTrigger("lostHp");
             canHurt=false;
             GameManager.canInpute=false;
             CM_Shake.Instance.ShakeCamera(3f,0.2f);
