@@ -153,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 fallingAttack.Attack();
                 rb.gravityScale=3;
-                CM_Shake.Instance.ShakeCamera(4f,0.2f);
+                CM_Shake.Instance.ShakeCamera(6f,0.2f);
                 QuickFallPressed=false;
                 QuickFalling=false;
             }
