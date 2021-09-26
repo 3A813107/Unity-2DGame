@@ -591,6 +591,7 @@ MonoBehaviour:
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 128
+  FallingAttackEffect: {fileID: 941677563398606570, guid: 57fa4c730360af74db47b33c0c58ac74, type: 3}
   damage: 2
 --- !u!1 &219594370
 GameObject:

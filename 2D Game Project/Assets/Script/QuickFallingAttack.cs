@@ -8,10 +8,12 @@ public class QuickFallingAttack : MonoBehaviour
     public float attackRangeX;
     public float attackRangeY;
     public LayerMask whatIsEnemies;
+    public GameObject FallingAttackEffect;
     public int damage;
 
     public void Attack()
     {
+        Instantiate(FallingAttackEffect,DamagePoint.position,Quaternion.identity);
         Collider2D[] enemiesToDamage = Physics2D.OverlapBoxAll(DamagePoint.position, new Vector2(attackRangeX,attackRangeY),0,whatIsEnemies);
         for(int i = 0;i < enemiesToDamage.Length;i++)
         {
