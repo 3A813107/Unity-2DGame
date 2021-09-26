@@ -443,12 +443,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 8
   JumpForce: 8
-  GroundCheck: {fileID: 360494506}
   Ground:
     serializedVersion: 2
     m_Bits: 8
+  footOffset: 0.35
+  GroundDistance: 0.2
   isGround: 0
   JumpTime: 0.25
+  QuickFallGravity: 15
+  QuickFallCoolDown: 3
+  midAirDistance: 2.6
+  midAir: 0
 --- !u!95 &110627024
 Animator:
   serializedVersion: 3
@@ -542,6 +547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mana: 0
   MaxMana: 3
+  ManaRegen: 5
 --- !u!114 &110627029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1571,6 +1577,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 779740874}
+  - component: {fileID: 779740875}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1592,6 +1599,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &779740875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 779740873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58a5ebbf01560614b9544df30a72357e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &792121536
 GameObject:
   m_ObjectHideFlags: 0

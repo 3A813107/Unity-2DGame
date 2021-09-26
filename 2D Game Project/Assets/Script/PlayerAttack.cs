@@ -15,7 +15,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if(Time.time >= nextAttackTime)
         {
-            if(Input.GetKeyDown(KeyCode.Z))
+            if(Input.GetKeyDown(KeyCode.Z) && GameManager.canInpute)
             {
                 Attack();
                 nextAttackTime = Time.time+1f/AttackRate;

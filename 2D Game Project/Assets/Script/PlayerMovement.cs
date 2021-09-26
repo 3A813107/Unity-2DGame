@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Animator anim;
     public float MoveSpeed,JumpForce;
     public LayerMask Ground;
-
+    private string currentAnimaton;
     public float footOffset;
     public float GroundDistance=0.2f;
     public bool isGround;
@@ -28,7 +28,14 @@ public class PlayerMovement : MonoBehaviour
     private bool QuickFalling;
     public float midAirDistance;
     public bool midAir;
-    /////////////////////////////////////
+    ///////Animation States///////////
+    const string PLAYER_IDLE = "idle";
+    const string PLAYER_RUN = "run";
+    const string PLAYER_JUMP = "jump";
+    const string PLAYER_FALL = "fall";
+    const string PLAYER_DOUBLEJUMP = "doublejump";
+    const string PLAYER_DIE = "death";   
+    
     void Start()
     {
         rb=GetComponent<Rigidbody2D>();
@@ -42,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
             QuickFallCheak();
+            FallingCheak();
         }
     }
 
@@ -51,7 +59,6 @@ public class PlayerMovement : MonoBehaviour
         {
             PhysicsCheck();
             GroundMovement();
-            SwitchAnimation();
             QuickFall();
         } 
     }
@@ -59,14 +66,6 @@ public class PlayerMovement : MonoBehaviour
     void GroundMovement()
     {
         float MoveInput = Input.GetAxisRaw("Horizontal");
-        if(MoveInput > 0 || MoveInput < 0)
-        {
-            anim.SetBool("run",true);
-        }
-        else if(MoveInput==0)
-        {
-            anim.SetBool("run",false);
-        }
         rb.velocity=new Vector2(MoveInput * MoveSpeed,rb.velocity.y);
         if(FacingRight == false && MoveInput > 0)
         {
@@ -74,6 +73,17 @@ public class PlayerMovement : MonoBehaviour
         }else if(FacingRight == true && MoveInput < 0)
         {
             Flip();
+        }
+        if(isGround&&!isJumping)
+        {
+            if(MoveInput!=0)
+            {
+                ChangeAnimationState(PLAYER_RUN);
+            }
+            else
+            {
+                ChangeAnimationState(PLAYER_IDLE);
+            }
         }
 
     }
@@ -90,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 isJumping=true;
                 JumpTimeCounter=JumpTime;
-                anim.SetBool("jump",true);
+                ChangeAnimationState(PLAYER_JUMP);
                 rb.velocity = Vector2.up * JumpForce;           
             }
             else
@@ -99,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     isJumping=true;
                     JumpTimeCounter=JumpTime;
-                    anim.SetBool("doublejump",true);
+                    ChangeAnimationState(PLAYER_DOUBLEJUMP);
                     rb.velocity = Vector2.up * JumpForce;
                     canDoubleJump=false;
                 }
@@ -130,68 +140,6 @@ public class PlayerMovement : MonoBehaviour
         Scaler.x*=-1;
         transform.localScale=Scaler;
     }
-    void SwitchAnimation()
-    {
-        anim.SetBool("idle",false);
-        if(anim.GetBool("jump"))
-        {
-            if(rb.velocity.y < 0.0f)
-            {
-                anim.SetBool("jump",false);
-                anim.SetBool("fall",true);
-            }
-        }
-        else if(isGround)
-        {
-            anim.SetBool("fall",false);
-            anim.SetBool("idle",true);
-        }
-
-        if(anim.GetBool("run") && !isGround)
-        {
-            if(rb.velocity.y < -5.0f)
-            {
-                anim.SetBool("run",false);
-                anim.SetBool("fall",true);
-            }
-        }
-        else if(isGround)
-        {
-            anim.SetBool("fall",false);
-            anim.SetBool("idle",true);
-        }
-
-        if(!anim.GetBool("idle"))
-        {
-            if(rb.velocity.y < -5.0f)
-            {
-                anim.SetBool("fall",true);
-                anim.SetBool("idle",false);
-
-            }
-        }
-        else if(isGround)
-        {
-            anim.SetBool("fall",false);
-            anim.SetBool("idle",true);
-        }
-
-        if(anim.GetBool("doublejump"))
-        {
-            if(rb.velocity.y < 0.0f)
-            {
-                anim.SetBool("doublejump",false);
-                anim.SetBool("doublefall",true);
-            }
-        }
-        else if(isGround)
-        {
-            anim.SetBool("doublefall",false);
-            anim.SetBool("idle",true);
-        }
-     
-    }
-
     void QuickFall()
     {
         if(QuickFallPressed)
@@ -208,7 +156,6 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
     void QuickFallCheak()
     {
         if(Input.GetKeyDown(KeyCode.DownArrow) && !isGround && Time.time >=(LastQuickFall+QuickFallCoolDown)&&midAir)
@@ -231,7 +178,6 @@ public class PlayerMovement : MonoBehaviour
             isGround=false;
         }
     }
-
     RaycastHit2D Raycast(Vector2 offset,Vector2 rayDiraction,float lenght,LayerMask layer)
     {
         Vector2 pos = transform.position;
@@ -239,6 +185,19 @@ public class PlayerMovement : MonoBehaviour
         Debug.DrawRay(pos + offset , rayDiraction*lenght,Color.blue);
         return hit;
     }
+    void ChangeAnimationState(string newAnimation)
+    {
+        if (currentAnimaton == newAnimation) return;
 
+        anim.Play(newAnimation);
+        currentAnimaton = newAnimation;
+    }
+    void FallingCheak()
+    {
+        if(rb.velocity.y < -5.0f && !isGround)
+        {
+            ChangeAnimationState(PLAYER_FALL);
+        }
+    }
 }
 
