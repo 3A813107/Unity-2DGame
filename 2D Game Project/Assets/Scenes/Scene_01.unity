@@ -452,7 +452,7 @@ MonoBehaviour:
   isGround: 0
   JumpTime: 0.25
   QuickFallGravity: 15
-  QuickFallCoolDown: 3
+  QuickFallCoolDown: 2
   midAirDistance: 2.6
   midAir: 0
   fallingAttack: {fileID: 0}
