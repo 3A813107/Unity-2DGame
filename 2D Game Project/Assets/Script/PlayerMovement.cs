@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private bool QuickFalling;
     public float midAirDistance;
     public bool midAir;
+    public QuickFallingAttack fallingAttack;
     ///////Animation States///////////
     const string PLAYER_IDLE = "idle";
     const string PLAYER_RUN = "run";
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb=GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        fallingAttack = GetComponent<QuickFallingAttack>();
     }
 
 
@@ -149,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
             rb.gravityScale=QuickFallGravity;          
             if(isGround && QuickFalling)
             {
+                fallingAttack.Attack();
                 rb.gravityScale=3;
                 CM_Shake.Instance.ShakeCamera(4f,0.2f);
                 QuickFallPressed=false;
