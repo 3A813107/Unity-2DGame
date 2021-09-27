@@ -549,7 +549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Mana: 0
   MaxMana: 3
-  ManaRegen: 5
+  ManaRegen: 2
 --- !u!114 &110627029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2421,7 +2421,7 @@ MonoBehaviour:
   - {fileID: 1883946310}
   - {fileID: 749390032}
   nextID: 0
-  health: 5
+  health: 10
   damage: 1
   startDazedTime: 0.5
 --- !u!61 &1363852308
